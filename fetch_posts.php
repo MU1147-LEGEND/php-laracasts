@@ -8,9 +8,10 @@ $config = require("./config.php");
 // creating new db instance
 $db = new Database($config['database']);
 
-$query = "select * from posts";
+// queries
+$query = "SELECT * FROM posts";
 
+// fetching
 $posts = $db->query($query)->fetchAll();
-
 
 return $posts;

@@ -1,28 +1,52 @@
+<?php
+$posts = require("./fetch_posts.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
     <title>PHP CRUD</title>
 </head>
 
 <body>
-    <h1>My Posts</h1>
-    <?php
-    $posts = require("./fetch_posts.php");
-    foreach ($posts as $post) {
-        echo "<a href=/post.php?id=". $post['id'] .">" . $post['title'] . "</a> <br/>";
-    }
-    ?>
+    <div class="wrapper">
+        <h1>All Posts</h1>
 
-    <h2>Add Post to Database</h2>
+        <?php foreach ($posts as $post): ?>
+            <a href="/post.php?id=<?= $post['id'] ?>"> <?= $post['title'] ?> </a> <br />
+        <?php endforeach ?>
 
-    <form action="db_action.php">
+        <h2>Add Post to Database</h2>
 
-        <label for="name">Title:</label>
-        <input type="text" id="name">
-    </form>
+        <form action="db_action.php">
+
+            <div>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" cols="30" rows="10" required></textarea>
+            </div>
+
+            <!-- <div>
+                <label for="author_id">Author ID:</label>
+                <input type="number" id="author_id" name="author_id">
+
+                <select name="author_id" id="author_id">
+                    
+                </select>
+            </div> -->
+
+            <button type="submit">Add Post</button>
+
+        </form>
+    </div>
 </body>
 
 </html>
