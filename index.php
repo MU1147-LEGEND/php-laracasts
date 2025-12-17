@@ -1,5 +1,5 @@
 <?php
-require("./db_action.php");
+require("./src/controllers/db_action.php");
 $posts = require("./fetch_posts.php");
 
 ?>
@@ -19,7 +19,7 @@ $posts = require("./fetch_posts.php");
         <h1>All Posts</h1>
 
         <?php foreach ($posts as $post): ?>
-            <a href="/post.php?id=<?= $post['id'] ?>"> <?= htmlspecialchars($post['title']) ?> </a> <br />
+            <a href="/views/post.php?id=<?= $post['id'] ?>"> <?= htmlspecialchars($post['title']) ?> </a> <br />
         <?php endforeach ?>
 
         <h2>Add Post to Database</h2>

@@ -1,6 +1,6 @@
 <?php
-require("./Database.php");
-$config = require("./config.php");
+require("./src/models/Database.php");
+$config = require("./configs/config.php");
 
 // creating new DB instance
 $db = new Database($config['database']);

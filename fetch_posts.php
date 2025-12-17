@@ -1,6 +1,6 @@
 <?php
 
-$config = require("./config.php");
+$config = require("./configs/config.php");
 
 // $id = $_GET['id'];
 

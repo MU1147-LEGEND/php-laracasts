@@ -1,7 +1,7 @@
 <?php
-require('./Database.php');
+require('../src/models/Database.php');
 
-$config = require("./config.php");
+$config = require("../configs/config.php");
 
 $id = $_GET['id'];
 
@@ -22,10 +22,6 @@ $authorQuery = "SELECT * FROM authors WHERE id = ?";
 $post = $db->query($postQuery, [$id])->find();
 $author = $db->query($authorQuery, [$post['author_id']])->find();
 
-
-// echo "<pre>";
-// var_dump($author);
-// echo "</pre>";
 ?>
 
 <!DOCTYPE html>
@@ -34,14 +30,14 @@ $author = $db->query($authorQuery, [$post['author_id']])->find();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <title>Single Post</title>
 </head>
 
 <body>
     <div class="wrapper">
         <p>
-            <a href="/" style="padding: 5px;margin:5px;">⬅️Go back</a>
+            <a href="/" style="padding: 5px;margin:5px;">⬅️ Go back</a>
         </p>
         <h2 style="text-align:center;">
             <?= strtoupper(htmlspecialchars($post['title'])) ?>
