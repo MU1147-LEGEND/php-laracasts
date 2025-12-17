@@ -6,7 +6,9 @@
 - **fetch_posts.php** → Fetch all posts from the database
 - **index.php** → List posts and add new posts
 - **post.php** → View a single post by ID
-- **db_action.php** → Reserved for database actions (insert/update/delete)
+- **post-create.php** → Reserved for database actions (insert)
+- **post-delete.php** → Reserved for database actions (delete)
+- **post-update.php** → Reserved for database actions (update)
 
 ---
 

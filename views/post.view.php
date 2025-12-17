@@ -1,5 +1,6 @@
 <?php
-require('../src/models/Database.php');
+require("../src/models/Database.php");
+require("../utils/helper.php");
 
 $config = require("../configs/config.php");
 
@@ -20,7 +21,14 @@ $authorQuery = "SELECT * FROM authors WHERE id = ?";
 
 // fetching
 $post = $db->query($postQuery, [$id])->find();
+
+if (! $post) {
+    echo "<h3>Not found</h3>";
+    exit;
+}
+
 $author = $db->query($authorQuery, [$post['author_id']])->find();
+
 
 ?>
 
@@ -36,8 +44,9 @@ $author = $db->query($authorQuery, [$post['author_id']])->find();
 
 <body>
     <div class="wrapper">
-        <p>
-            <a href="/" style="padding: 5px;margin:5px;">⬅️ Go back</a>
+        <p style="display: flex; align-items:center; justify-content:space-between;">
+            <a href="/">⬅️ Go back</a>
+            <a href="/views/edit.view.php">Edit</a>
         </p>
         <h2 style="text-align:center;">
             <?= strtoupper(htmlspecialchars($post['title'])) ?>

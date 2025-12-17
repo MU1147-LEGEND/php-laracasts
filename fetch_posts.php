@@ -11,6 +11,6 @@ $db = new Database($config['database']);
 $query = "SELECT * FROM posts WHERE author_id = ?";
 
 // fetching
-$posts = $db->query($query, [1])->get();
+$posts = $db->query($query, [Verifyuser::$currentUserId])->get();
 
 return $posts;

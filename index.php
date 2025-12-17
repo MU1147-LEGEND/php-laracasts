@@ -1,5 +1,5 @@
 <?php
-require("./src/controllers/db_action.php");
+require("./src/controllers/post-create.php");
 $posts = require("./fetch_posts.php");
 
 ?>
@@ -19,8 +19,23 @@ $posts = require("./fetch_posts.php");
         <h1>All Posts</h1>
 
         <?php foreach ($posts as $post): ?>
-            <a href="/views/post.php?id=<?= $post['id'] ?>"> <?= htmlspecialchars($post['title']) ?> </a> <br />
+            <a href="/views/post.view.php?id=<?= $post['id'] ?>">
+                <span style="display: flex; align-items:center; justify-content:space-between;">
+                    <?= htmlspecialchars($post['title']) ?>
+                    <form class="form-reset" method="POST" title="This will delete the post - no confirmation">
+                        <input type="hidden" name="id" value="<?= $post['id'] ?>">
+                        <button style="background-color: tomato ;" type="submit" name="post-delete">Delete</button>
+                    </form>
+                </span> </a>
+            <br />
         <?php endforeach ?>
+
+        <?php
+        if (! Verifyuser::isLoggedIn()) {
+            echo "<h2>Please login</h2>";
+            exit();
+        }
+        ?>
 
         <h2>Add Post to Database</h2>
 
@@ -42,7 +57,7 @@ $posts = require("./fetch_posts.php");
                 <?php endif; ?>
             </div>
 
-            <button type="submit">Add Post</button>
+            <button type="submit" name="post-create">Add Post</button>
 
         </form>
     </div>
