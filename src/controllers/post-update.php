@@ -4,7 +4,20 @@ require(__DIR__ . "/../models/Database.php");
 
 $config = require(__DIR__ . "/../../configs/config.php");
 $db = new Database($config['database']);
-$post = $db->query("select * from posts where id = ?", [$_POST['id']])->find(); // need to fix this.
+
+$postId = $_GET['id'] ?? null;
+
+if (! $postId) {
+    header("Location: /");
+    exit;
+}
+
+$post = $db->query("select * from posts where id = ?", [$postId])->find();
+
+if (! $post) {
+    echo "<h3>Post not found</h3>";
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['post-update'])) {
@@ -21,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($errors)) {
             $query = "UPDATE posts SET title = ?, description = ? WHERE id = ?";
             $db->query($query, [$_POST['title'], $_POST['description'], $post['id']]);
-            // header("Location: /views/post.view.php?id=" . $post['id']);
-            // exit;
+            header("Location: /views/post.view.php?id=" . $post['id']);
+            exit;
         }
     }
 }

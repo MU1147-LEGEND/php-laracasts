@@ -16,7 +16,7 @@ $posts = require("./fetch_posts.php");
 
 <body>
     <div class="wrapper">
-        <h1>All Posts</h1>
+        <h1>My Posts</h1>
 
         <?php foreach ($posts as $post): ?>
             <a href="/views/post.view.php?id=<?= $post['id'] ?>">

@@ -87,10 +87,10 @@ form {
 
 .form-reset{
     background: white;
-    padding: 0;
+    padding: 0 !important;
     border-radius: 0;
     box-shadow: unset;
-    margin-top: auto;
+    margin-top: auto !important;
 }
 
 label {
