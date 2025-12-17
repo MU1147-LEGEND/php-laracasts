@@ -1,5 +1,4 @@
 <?php
-require('./Database.php');
 
 $config = require("./config.php");
 
@@ -12,6 +11,6 @@ $db = new Database($config['database']);
 $query = "SELECT * FROM posts WHERE author_id = ?";
 
 // fetching
-$posts = $db->query($query, [1])->fetchAll();
+$posts = $db->query($query, [1])->get();
 
 return $posts;

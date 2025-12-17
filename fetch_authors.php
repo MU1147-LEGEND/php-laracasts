@@ -9,6 +9,6 @@ $db = new Database($config['database']);
 $query = "SELECT * FROM authors";
 
 // fetching
-$authors = $db->query($query)->fetchAll();
+$authors = $db->query($query)->get();
 
 return $authors;

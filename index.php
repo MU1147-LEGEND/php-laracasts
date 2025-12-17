@@ -1,8 +1,6 @@
 <?php
+require("./db_action.php");
 $posts = require("./fetch_posts.php");
-require './helper.php';
-
-// dd($posts[1]);
 
 ?>
 
@@ -21,31 +19,28 @@ require './helper.php';
         <h1>All Posts</h1>
 
         <?php foreach ($posts as $post): ?>
-            <a href="/post.php?id=<?= $post['id'] ?>"> <?= $post['title'] ?> </a> <br />
+            <a href="/post.php?id=<?= $post['id'] ?>"> <?= htmlspecialchars($post['title']) ?> </a> <br />
         <?php endforeach ?>
 
         <h2>Add Post to Database</h2>
 
-        <form action="db_action.php">
+        <form method="POST">
 
             <div>
                 <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" value="<?= $_POST['title'] ?? "" ?>">
+                <?php if (isset($errors['title'])): ?>
+                    <p style="color:red;"> <?= $errors['title'] ?> </p>
+                <?php endif; ?>
             </div>
 
             <div>
                 <label for="description">Description:</label>
-                <textarea id="description" name="description" cols="30" rows="10" required></textarea>
+                <textarea id="description" name="description" cols="30" rows="10"><?= $_POST['description'] ?? "" ?></textarea>
+                <?php if (isset($errors['description'])): ?>
+                    <p style="color:red;"> <?= $errors['description'] ?> </p>
+                <?php endif; ?>
             </div>
-
-            <!-- <div>
-                <label for="author_id">Author ID:</label>
-                <input type="number" id="author_id" name="author_id">
-
-                <select name="author_id" id="author_id">
-                    
-                </select>
-            </div> -->
 
             <button type="submit">Add Post</button>
 

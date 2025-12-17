@@ -19,8 +19,8 @@ $postQuery = "SELECT * FROM posts WHERE id = ?";
 $authorQuery = "SELECT * FROM authors WHERE id = ?";
 
 // fetching
-$post = $db->query($postQuery, [$id])->fetch();
-$author = $db->query($authorQuery, [$post['author_id']])->fetch();
+$post = $db->query($postQuery, [$id])->find();
+$author = $db->query($authorQuery, [$post['author_id']])->find();
 
 
 // echo "<pre>";
@@ -44,10 +44,10 @@ $author = $db->query($authorQuery, [$post['author_id']])->fetch();
             <a href="/" style="padding: 5px;margin:5px;">⬅️Go back</a>
         </p>
         <h2 style="text-align:center;">
-            <?= strtoupper($post['title']) ?>
+            <?= strtoupper(htmlspecialchars($post['title'])) ?>
         </h2>
         <p>
-            <?= $post['description'] ?>
+            <?= htmlspecialchars($post['description']) ?>
 
             <span style="font-weight: bold; padding-top:50px;display:block;">
                 <a href="mailto:<?= $author['email'] ?>">
