@@ -9,9 +9,9 @@ $config = require("./config.php");
 $db = new Database($config['database']);
 
 // queries
-$query = "SELECT * FROM posts";
+$query = "SELECT * FROM posts WHERE author_id = ?";
 
 // fetching
-$posts = $db->query($query)->fetchAll();
+$posts = $db->query($query, [1])->fetchAll();
 
 return $posts;

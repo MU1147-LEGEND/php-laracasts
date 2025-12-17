@@ -1,5 +1,9 @@
 <?php
 $posts = require("./fetch_posts.php");
+require './helper.php';
+
+// dd($posts[1]);
+
 ?>
 
 <!DOCTYPE html>
