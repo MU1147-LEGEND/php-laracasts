@@ -1,5 +1,10 @@
 <?php
 
+require("./utils/helper.php");
+require("./src/models/Database.php");
+require("./src/models/Validator.php");
+require("./src/controllers/post-create.php");
+
 $routes = require("./routes.php");
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 

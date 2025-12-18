@@ -1,8 +1,7 @@
 <?php
-require("../src/models/Database.php");
-require("../utils/helper.php");
 
-$config = require("../configs/config.php");
+
+$config = require(__DIR__ . "/../../configs/config.php");
 
 $id = $_GET['id'];
 
@@ -28,5 +27,7 @@ if (! $post) {
 }
 
 $author = $db->query($authorQuery, [$post['author_id']])->find();
+
+require(__DIR__ . "/../../views/post.view.php");
 
 ?>

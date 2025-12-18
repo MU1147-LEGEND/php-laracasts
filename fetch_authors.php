@@ -1,5 +1,4 @@
 <?php
-require("./src/models/Database.php");
 $config = require("./configs/config.php");
 
 // creating new DB instance

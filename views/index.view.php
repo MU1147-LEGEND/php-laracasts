@@ -1,5 +1,4 @@
 <?php
-require("./src/controllers/post-create.php");
 $posts = require("./fetch_posts.php");
 ?>
 
@@ -18,7 +17,7 @@ $posts = require("./fetch_posts.php");
         <h1>My Posts</h1>
 
         <?php foreach ($posts as $post): ?>
-            <a href="/views/post.view.php?id=<?= $post['id'] ?>">
+            <a href="/post?id=<?= $post['id'] ?>">
                 <span style="display: flex; align-items:center; justify-content:space-between;">
                     <?= htmlspecialchars($post['title']) ?>
                     <form class="form-reset" method="POST" title="This will delete the post - no confirmation">

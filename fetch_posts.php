@@ -2,8 +2,6 @@
 
 $config = require("./configs/config.php");
 
-// $id = $_GET['id'];
-
 // creating new db instance
 $db = new Database($config['database']);
 

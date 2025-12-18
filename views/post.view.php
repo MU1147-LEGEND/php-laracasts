@@ -1,6 +1,4 @@
-<?php 
-require("../src/controllers/post-get.php");
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +13,7 @@ require("../src/controllers/post-get.php");
     <div class="wrapper">
         <p style="display: flex; align-items:center; justify-content:space-between;">
             <a href="/">⬅️ Go back</a>
-            <a href="/views/edit.view.php?id=<?= $post['id'] ?>">Edit</a>
+            <a href="/edit?id=<?= $post['id'] ?>">Edit</a>
         </p>
         <h2 style="text-align:center;">
             <?= strtoupper(htmlspecialchars($post['title'])) ?>

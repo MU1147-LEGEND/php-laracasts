@@ -1,12 +1,9 @@
 <?php
-require("./src/models/Database.php");
-require("./src/models/Validator.php");
-require("./utils/helper.php");
+
 $config = require("./configs/config.php");
 
 // creating new db instance
 $db = new Database($config['database']);
-
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if (isset($_POST['post-create'])) {

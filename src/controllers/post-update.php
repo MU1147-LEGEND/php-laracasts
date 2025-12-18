@@ -1,7 +1,4 @@
 <?php
-require(__DIR__ . "/../models/Validator.php");
-require(__DIR__ . "/../models/Database.php");
-
 $config = require(__DIR__ . "/../../configs/config.php");
 $db = new Database($config['database']);
 
@@ -13,6 +10,7 @@ if (! $postId) {
 }
 
 $post = $db->query("select * from posts where id = ?", [$postId])->find();
+require(__DIR__ . "/../../views/edit.view.php");
 
 if (! $post) {
     echo "<h3>Post not found</h3>";
@@ -34,11 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($errors)) {
             $query = "UPDATE posts SET title = ?, description = ? WHERE id = ?";
             $db->query($query, [$_POST['title'], $_POST['description'], $post['id']]);
-            header("Location: /views/post.view.php?id=" . $post['id']);
+            header("Location: /post?id=" . $post['id']);
             exit;
         }
     }
 }
 
-
-// update the post

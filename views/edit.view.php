@@ -1,7 +1,4 @@
-<?php
-require("../src/controllers/post-get.php");
-// require("../src/controllers/post-update.php");
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +10,7 @@ require("../src/controllers/post-get.php");
 </head>
 
 <body>
-    <form method="POST" action="../src/controllers/post-update.php?id=<?= $post['id'] ?>">
+    <form method="POST" action="./edit?id=<?= $post['id'] ?>">
 
         <div>
             <label for="title">Title:</label>
@@ -25,7 +22,7 @@ require("../src/controllers/post-get.php");
 
         <div>
             <label for="description">Description:</label>
-            <textarea id="description" name="description" cols="30" rows="10"><?= $post['description'] ?? "" ?></textarea>
+            <textarea id="description" name="description" cols="30" rows="10"><?= $post['description'] ?></textarea>
             <?php if (isset($errors['description'])): ?>
                 <p style="color:red;"> <?= $errors['description'] ?> </p>
             <?php endif; ?>
