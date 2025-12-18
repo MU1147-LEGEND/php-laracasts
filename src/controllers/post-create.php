@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         if (empty($errors)) {
             $query = "INSERT INTO posts (title, description, author_id) VALUES (?, ?, ?)";
             $db->query($query, [$_POST['title'], $_POST['description'], Verifyuser::$currentUserId]);
-            header("Location: index.php");
+            header("Location: /");
             exit;
         }
     }
