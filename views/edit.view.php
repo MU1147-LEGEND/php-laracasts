@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +28,7 @@
         </div>
 
         <button type="submit" name="post-update">Update</button>
-        <a href="javascript:void(0);" onclick="history.back(); return false;" style="display: inline; background-color:tomato; color:white; border:none;padding: 12px 32px;">Cancel</a>
+        <a href="/post?id=<?= $post['id'] ?>" style="display: inline; background-color:tomato; color:white; border:none;padding: 12px 32px;">Cancel</a>
 
     </form>
 </body>
