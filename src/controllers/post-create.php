@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
         if (empty($errors)) {
             $query = "INSERT INTO posts (title, description, author_id) VALUES (?, ?, ?)";
-            $db->query($query, [$_POST['title'], $_POST['description'], Verifyuser::$currentUserId]);
+            $db->query($query, [$_POST['title'], $_POST['description'], Verifyuser::isLoggedIn()['id']]);
             header("Location: /");
             exit;
         }
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     if (isset($_POST['post-delete'])) {
         $query = "DELETE FROM posts WHERE id= ?";
-        if (! Verifyuser::$currentUserId) {
+        if (! Verifyuser::isLoggedIn()['id']) {
             header("Location: /");
             exit;
         }

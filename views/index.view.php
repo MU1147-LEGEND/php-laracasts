@@ -14,6 +14,26 @@ $posts = require("./fetch_posts.php");
 
 <body>
     <div class="wrapper">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Welcome to PHP CRUD Application</h2>
+            <div>
+                <?php if ($_SESSION['user'] ?? false): ?>
+                    <span>Hello, <?= htmlspecialchars($_SESSION['user']['name']) ?></span> <a>Log Out</a>
+                <?php else: ?>
+                    <a href="/register"><button>Register</button></a>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <?php
+        $loggedIn = Verifyuser::isLoggedIn();
+        $user = $loggedIn ? $loggedIn['id'] : null;
+        if (!$user) {
+            echo "<h2>Please login</h2>";
+            exit();
+        }
+        ?>
+
         <h1>My Posts</h1>
 
         <?php foreach ($posts as $post): ?>
@@ -27,13 +47,6 @@ $posts = require("./fetch_posts.php");
                 </span> </a>
             <br />
         <?php endforeach ?>
-
-        <?php
-        if (! Verifyuser::isLoggedIn()) {
-            echo "<h2>Please login</h2>";
-            exit();
-        }
-        ?>
 
         <h2>Add Post to Database</h2>
 

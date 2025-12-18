@@ -9,6 +9,7 @@ $db = new Database($config['database']);
 $query = "SELECT * FROM posts WHERE author_id = ?";
 
 // fetching
-$posts = $db->query($query, [Verifyuser::$currentUserId])->get();
+$user = Verifyuser::isLoggedIn();
+$posts = $user ? $db->query($query, [$user["id"]])->get() : [];
 
 return $posts;

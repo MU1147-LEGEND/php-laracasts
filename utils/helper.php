@@ -7,18 +7,23 @@ function dd($value)
     echo "</pre>";
     die();
 }
+Verifyuser::initialize();
 
 class Verifyuser
 {
+    public static $currentEmail;
 
-    public static $currentUserId = 5;
+    public static function initialize()
+    {
+        self::$currentEmail = $_SESSION['user']['email'] ?? false;
+    }
 
     public static function isLoggedIn()
     {
         $config = require("./configs/config.php");
         $db = new Database($config['database']);
-        $query = "SELECT id FROM authors WHERE id= ?";
-        $user = $db->query($query, [self::$currentUserId])->find();
+        $query = "SELECT id FROM authors WHERE email= ?";
+        $user = $db->query($query, [self::$currentEmail])->find();
         return $user;
     }
 }

@@ -85,7 +85,7 @@ form {
     margin-top: 20px;
 }
 
-.form-reset{
+.form-reset {
     background: white;
     padding: 0 !important;
     border-radius: 0;
@@ -175,6 +175,26 @@ input[type="submit"].success {
     background-color: var(--success-color);
 }
 
+.a-reset {
+    display: unset;
+    padding: 0;
+    margin-bottom: 0;
+    background: unset;
+    color: unset;
+    text-decoration: none;
+    border-radius: 0;
+    border-left: 0;
+    transition: unset;
+    box-shadow: unset;
+    font-weight: unset;
+}
+.a-reset:hover {
+    background: unset;
+    color: unset;
+    border-left-color: unset;
+    transform: unset;
+    box-shadow: unset;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
     .wrapper {
