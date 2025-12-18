@@ -20,7 +20,11 @@ $posts = require("./fetch_posts.php");
                 <?php if ($_SESSION['user'] ?? false): ?>
                     <span>Hello, <?= htmlspecialchars($_SESSION['user']['name']) ?></span> <a>Log Out</a>
                 <?php else: ?>
-                    <a href="/register"><button>Register</button></a>
+                    <div style="display: flex;gap:10px;align-items:center;">
+                        <a href="/register"><span>Register</span></a>
+                        <span>or</span>
+                        <a href="/login"><span>Login</span></a>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

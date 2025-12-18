@@ -12,7 +12,6 @@
     <div class="wrapper">
         <h1>Login</h1>
         <form method="POST" action="/login">
-
             <input type="email" name="email" id="email" placeholder="Email" value="<?= $_POST['email'] ?? "" ?>">
             <?php if (isset($errors['email'])): ?>
                 <p style="color:red;"> <?= $errors['email'] ?> </p>
@@ -23,12 +22,9 @@
             <?php endif; ?>
             <button type="submit" name="login">Login</button>
 
-            <br>
-            <span>or</span>
         </form>
-        <button style="display: block; margin:10px 0;">
-            <a class="a-reset" href="/register">Register</a>
-        </button>
+        <span>or</span>
+        <a href="/register">Register</a>
     </div>
 </body>
 
