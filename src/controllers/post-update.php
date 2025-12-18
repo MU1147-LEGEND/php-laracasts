@@ -1,4 +1,5 @@
 <?php
+
 $config = require(__DIR__ . "/../../configs/config.php");
 $db = new Database($config['database']);
 
@@ -10,17 +11,16 @@ if (! $postId) {
 }
 
 $post = $db->query("select * from posts where id = ?", [$postId])->find();
-require(__DIR__ . "/../../views/edit.view.php");
 
 if (! $post) {
     echo "<h3>Post not found</h3>";
     exit;
 }
 
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['post-update'])) {
-        $errors = [];
-
         if (! Validator::string($_POST['title'], 1, 500)) {
             $errors['title'] = "A title is no more than 500 characters required";
         }
@@ -38,3 +38,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+require(__DIR__ . "/../../views/edit.view.php");
