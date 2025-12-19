@@ -86,7 +86,7 @@ form {
 }
 
 .form-reset {
-    background: white;
+    background: inherit !important;
     padding: 0 !important;
     border-radius: 0;
     box-shadow: unset;

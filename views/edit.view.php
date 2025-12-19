@@ -27,10 +27,29 @@
             <?php endif; ?>
         </div>
 
-        <button type="submit" name="post-update">Update</button>
+        <button type="submit" name="post-update" id="update">Update</button>
         <a href="/post?id=<?= $post['id'] ?>" style="display: inline; background-color:tomato; color:white; border:none;padding: 12px 32px;">Cancel</a>
 
     </form>
+
+    <script>
+        // click the cancel button if esc key is pressed
+        document.addEventListener('keyup', function(event) {
+            if (event.key == "Escape") {
+                window.location.href = "/post?id=<?= $post['id'] ?>";
+            }
+        });
+
+        // if the user click ctrl+key then trigger update function.
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'Enter') {
+                document.getElementById("update").click();
+            }
+            if (event.metaKey && event.key === 'Enter') {
+                document.getElementById("update").click();
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +12,10 @@
     <div class="wrapper">
         <p style="display: flex; align-items:center; justify-content:space-between;">
             <a href="/">⬅️ Go back</a>
-            <a href="/edit?id=<?= $post['id'] ?>">Edit</a>
+
+            <?php if ($post['author_id'] === $_SESSION['user']['author_id']): ?>
+                <a href="/edit?id=<?= $post['id'] ?>">Edit</a>
+            <?php endif ?>
         </p>
         <h2 style="text-align:center;">
             <?= strtoupper(htmlspecialchars($post['title'])) ?>
@@ -28,6 +30,15 @@
             </span>
         </p>
     </div>
+
+    <script>
+        // click the go back button if esc key is pressed
+        document.addEventListener('keyup', function(event) {
+            if (event.key === "Escape") {
+                window.location.href = "/";
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -16,7 +16,7 @@ Small Laravel-inspired PHP CRUD practice app that manages posts and authors with
 - `configs/config.php` — Database connection settings.
 - `src/models/Database.php` — PDO wrapper with `query()`, `get()`, `find()` helpers.
 - `src/models/Validator.php` — Simple string/email validators.
-- `utils/helper.php` — `dd()` helper and `Verifyuser` stub for login checks.
+- `utils/helper.php` — `dd()` helper and `User` stub for login checks.
 - `fetch_posts.php` — Fetch all posts for the current user.
 - `fetch_authors.php` — Fetch all authors.
 - `src/controllers/post-create.php` — Handle create + delete actions from `index.php`.
@@ -46,12 +46,12 @@ Small Laravel-inspired PHP CRUD practice app that manages posts and authors with
 
 ### `utils/helper.php` — Helpers & Login Check
 - Quick `dd()` for debugging.
-- `Verifyuser` stub to simulate authentication and gate create/delete actions.
+- `User` stub to simulate authentication and gate create/delete actions.
 
 ### `index.php` — List/Create/Delete
 - Rendering posts for the current user and escaping output with `htmlspecialchars`.
 - Handling create and inline delete submissions through `post-create.php`.
-- Guarding creation with a login check (`Verifyuser::isLoggedIn()`).
+- Guarding creation with a login check (`User::isLoggedIn()`).
 
 ### `src/controllers/post-create.php` — Create/Delete Logic
 - Validating POST data before insert; collecting errors for re-render.

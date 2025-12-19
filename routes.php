@@ -6,5 +6,6 @@ return [
     '/edit' => 'src/controllers/post-update.php',
     '/register' => 'src/controllers/registration/create.php',
     '/login' => 'src/controllers/login/create.php',
+    '/log-out' => 'src/controllers/login/destroy.php',
     '/not-found' => 'views/404.view.php',
 ];

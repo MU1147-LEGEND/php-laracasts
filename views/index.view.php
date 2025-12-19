@@ -18,7 +18,9 @@ $posts = require("./fetch_posts.php");
             <h2>Welcome to PHP CRUD Application</h2>
             <div>
                 <?php if ($_SESSION['user'] ?? false): ?>
-                    <span>Hello, <?= htmlspecialchars($_SESSION['user']['name']) ?></span> <a>Log Out</a>
+                    <form class="form-reset" action="/log-out">
+                        <span>Hello, <?= htmlspecialchars($_SESSION['user']['name']) ?></span> <a href="/log-out">Log Out</a>
+                    </form>
                 <?php else: ?>
                     <div style="display: flex;gap:10px;align-items:center;">
                         <a href="/register"><span>Register</span></a>
@@ -30,7 +32,7 @@ $posts = require("./fetch_posts.php");
         </div>
 
         <?php
-        $loggedIn = Verifyuser::isLoggedIn();
+        $loggedIn = User::isLoggedIn();
         $user = $loggedIn ? $loggedIn['id'] : null;
         if (!$user) {
             echo "<h2>Please login</h2>";
@@ -72,10 +74,22 @@ $posts = require("./fetch_posts.php");
                 <?php endif; ?>
             </div>
 
-            <button type="submit" name="post-create">Add Post</button>
+            <button type="submit" name="post-create" id="add">Add Post</button>
 
         </form>
     </div>
+
+    <script>
+        // if the user click ctrl+key then trigger update function.
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'Enter') {
+                document.getElementById("add").click();
+            }
+            if (event.metaKey && event.key === 'Enter') {
+                document.getElementById("add").click();
+            }
+        });
+    </script>
 </body>
 
 </html>

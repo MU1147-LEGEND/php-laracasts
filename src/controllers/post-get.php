@@ -1,5 +1,11 @@
 <?php
 
+$loginStatus = User::isLoggedIn();
+
+if(! $loginStatus){
+    echo "<h3>You're not authorized to view this post.</h3>";
+    exit;
+}
 
 $config = require(__DIR__ . "/../../configs/config.php");
 

@@ -29,9 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if ($user) {
         if (password_verify($pass, $user['pass'])) { // will handle with middlware later.
             $_SESSION['user'] = [
-                'name' => $name,
-                'email' => $email,
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'author_id' => $user['id'],
             ];
+            session_regenerate_id(true);
         }
 
         header("Location: /");

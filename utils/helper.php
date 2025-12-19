@@ -7,9 +7,9 @@ function dd($value)
     echo "</pre>";
     die();
 }
-Verifyuser::initialize();
+User::initialize();
 
-class Verifyuser
+class User
 {
     public static $currentEmail;
 
@@ -25,5 +25,15 @@ class Verifyuser
         $query = "SELECT id FROM authors WHERE email= ?";
         $user = $db->query($query, [self::$currentEmail])->find();
         return $user;
+    }
+
+    public static function logout()
+    {
+        // log out the user
+        $_SESSION = [];
+        session_destroy();
+
+        $params = session_get_cookie_params();
+        setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
     }
 }

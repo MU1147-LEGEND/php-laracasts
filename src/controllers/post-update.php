@@ -1,5 +1,13 @@
 <?php
 
+$loginStatus = User::isLoggedIn();
+
+if (! $loginStatus) {
+    echo "<h3>You're not authorized to view this post.</h3>";
+    exit;
+}
+
+
 $config = require(__DIR__ . "/../../configs/config.php");
 $db = new Database($config['database']);
 
@@ -14,6 +22,11 @@ $post = $db->query("select * from posts where id = ?", [$postId])->find();
 
 if (! $post) {
     echo "<h3>Post not found</h3>";
+    exit;
+}
+
+if ($post['author_id'] !== $_SESSION['user']['author_id']) {
+    echo "<h3>You're not authorized to edit/update this post.</h3>";
     exit;
 }
 
